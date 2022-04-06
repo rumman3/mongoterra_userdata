@@ -11,7 +11,7 @@ pipeline {
       steps {
         checkout([
             $class: 'GitSCM', branches: [[name: '*/main']],
-            serRemoteConfigs: [[
+            UserRemoteConfigs: [[
               url: 'git@github.com:rumman3/mongoterra_userdata.git',
               credentialsId: 'ssh_git_cred'
             ]]
