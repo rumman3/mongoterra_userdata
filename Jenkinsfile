@@ -32,7 +32,7 @@ pipeline {
       }
     }
 
-    stage {
+    stage ('Removing the Docker Image'){
       steps {
         sh "docker rmi $IMAGE_NAME"
       }
