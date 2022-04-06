@@ -1,6 +1,10 @@
 pipeline {
   agent any
 
+  environment {
+    IMAGE_NAME = "rumman123/spartanmongopy:1." + "$BUILD_NUMBER"
+  }
+
   stages {
     stage('Cloning the project from GitHub'){
       steps {
@@ -12,7 +16,7 @@ pipeline {
     stage('Building a Docker Image'){
       steps {
         script {
-          DOCKER_IMAGE = docker.build 'rumman123/spartanmongopy'
+          DOCKER_IMAGE = docker.build 'IMAGE_NAME'
         }
       }
     }
