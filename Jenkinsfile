@@ -31,5 +31,11 @@ pipeline {
         }
       }
     }
+
+    stage {
+      steps {
+        sh "docker rmi $IMAGE_NAME"
+      }
+    }
   }
 }
