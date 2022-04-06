@@ -27,6 +27,16 @@ pipeline {
       }
     }
 
+    stage('Testing the Calc Code'){
+      steps{
+        script {
+          sh '''
+            docker run --rm -v $PWD/test-results:/reports --workdir /app $IMAGE_NAME pytest --junitxml=/ reports/results.xml
+          '''
+        }
+      }
+    }
+
     stage('Push to Docker Hub'){
       steps {
         script {
