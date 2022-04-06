@@ -9,8 +9,13 @@ pipeline {
   stages {
     stage('Cloning the project from GitHub'){
       steps {
-        git branch: 'main',
-        url: 'https://github.com/rumman3/mongoterra_userdata.git'
+        checkout([
+            $class: 'GitSCM', branches: [[name: '*/main']],
+            serRemoteConfigs: [[
+              url: 'git@github.com:rumman3/mongoterra_userdata.git',
+              credentialsId: 'ssh_git_cred'
+            ]]
+          ])
       }
     }
 
