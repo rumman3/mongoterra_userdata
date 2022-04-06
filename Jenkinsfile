@@ -12,7 +12,17 @@ pipeline {
     stage('Building a Docker Image'){
       steps {
         script {
-          docker.build 'rumman123/spartanmongopy'
+          DOCKER_IMAGE = docker.build 'rumman123/spartanmongopy'
+        }
+      }
+    }
+
+    stage('Push to Docker Hub'){
+      steps {
+        script {
+          docker.withRegistry('','docker_hub_cred'){
+            DOCKER_IMAGE.push()
+          }
         }
       }
     }
